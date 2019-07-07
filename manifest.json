@@ -1,23 +1,31 @@
 {
- "name": "Highlighter",
- "version": "1",
- "description": "Dynamic CTRL+F. Simply highlight a word to find all instances of the word on the current page.",
- "manifest_version": 2,
- "browser_action": {
-   "default_title": "Highlighter",
-   "default_icon": "icon.png"
- },
- "permissions": [
-   "tabs",
-   "<all_urls>"
- ],
- "content_scripts": [
-   {
-     "matches": ["<all_urls>"],
-     "js": ["jquery-2.2.4.min.js", "selection.js"],
-     "css": ["selection.css"],
-     "run_at": "document_start",
-     "all_frames": true
-   }
- ]
+  "name": "Highlighter",
+  "version": "2.0",
+  "description": "Shortcut for CTRL+F, double click a word to see all instances on the current webpage",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["contentScript.js", "libs/mark.min.js"],
+      "run_at": "document_end",
+      "exclude_matches": [
+        "https://dillinger.io/"
+      ]
+    }
+  ],
+  "page_action": {
+    "default_icon": {
+      "16": "images/highlighter16.png",
+      "32": "images/highlighter32.png",
+      "48": "images/highlighter48.png",
+      "128": "images/highlighter128.png"
+    }
+  },
+  "icons": {
+    "16": "images/highlighter16.png",
+    "32": "images/highlighter32.png",
+    "48": "images/highlighter48.png",
+    "128": "images/highlighter128.png"
+  },
+  "manifest_version": 2
 }
